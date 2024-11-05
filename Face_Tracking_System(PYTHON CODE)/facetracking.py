@@ -14,13 +14,13 @@ if not cap.isOpened():
     exit()
 
 
-port = "COM11"
+port = "/dev/cu.usbmodem1101"
 board = pyfirmata.Arduino(port)
 servo_pinX = board.get_pin('d:9:s') #pin 9 Arduino
 servo_pinY = board.get_pin('d:10:s') #pin 10 Arduino
 
 detector = FaceDetector()
-servoPos = [90, 90] # initial servo position
+servoPos = [0, 0] # initial servo position
 
 while True:
     success, img = cap.read()
@@ -31,8 +31,8 @@ while True:
         fx, fy = bboxs[0]["center"][0], bboxs[0]["center"][1]
         pos = [fx, fy]
         #convert coordinate to servo degree
-        servoX = np.interp(fx, [0, ws], [180, 0])
-        servoY = np.interp(fy, [0, hs], [180, 0])
+        servoX = np.interp(fx, [0, ws], [0, 180])
+        servoY = np.interp(fy, [0, hs], [0, 180])
         if servoX < 0:
             servoX = 0
         elif servoX > 180:
