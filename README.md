@@ -1,3 +1,10 @@
+
+This is used to create a program that automatically tracks the position of your face using the camera. 
+
+
+
+
+
 Modules Used:-
 1. pyfirmata :- pip install pyFirmata
 
